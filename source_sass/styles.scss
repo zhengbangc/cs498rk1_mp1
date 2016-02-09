@@ -4,105 +4,174 @@
 @import "variables";
 @import "mixins";
 @import "base";
+@import url(https://www.google.com/fonts#UsePlace:use/Collection:Josefin+Slab:400,700,600);
 
-#header {
+@mixin transition($transition) {
+	transition: $transition;
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
+	-o-transition: $transition;
+}
 
-	transition: all 1s ease;
-	-moz-transition: all 1s ease; /* Firefox 4 */
-	-webkit-transition: all 1s ease; /* Safari and Chrome */
-	-o-transition: all 1s ease; /* Opera */
+@mixin bg($url) {
+	background-image: url($url);
+	background-size: cover;
+	background-position: center center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
 
-	background:  #21738F;
+$custom-slab: Garamond, sans-serif;
 
-	border-bottom: 1px solid #dadada;
-	position: fixed;
-	width: 100%;
-	top: 0;
-	font-family: 'Lato', sans-serif;
-	&.large {
-		height: 60px;
-		line-height: 60px;
+body {
+	font-family: $custom-slab;
+
+	header{
 		
-		nav a {
-			font-size: 20px;
-			padding: 5px 10px 5px 10px;
+		@include transition(all 1s ease);
+
+		background:  #21738F;
+
+		/*border-bottom: 1px solid #dadada;*/
+		position: fixed;
+		width: 100%;
+		top: 0;
+		&.large {
+			height: 60px;
+			line-height: 60px;
+			
+			nav a {
+				font-size: 20px;
+				padding: 5px 10px 5px 10px;
+			}
+
 		}
 
-	}
+		&.small{
+			height: 30px;	
+			line-height: 30px;
+			nav a {
+				font-size: 20px;
+				padding: 0 10px 0 10px;
+			}
 
-	&.small{
-		height: 30px;	
-		line-height: 30px;
-		nav a {
-			font-size: 20px;
-			padding: 0 10px 0 10px;
 		}
 
-	}
-
-	/*z.chen logo on the top left*/
-	h1 {
-		left: 1.25em;
-		position: absolute;
-		a{
-			border:0;
-			display: block;
-			text-decoration: none;
-			color: #FFFFFF;
-			font-size: 20px;
-		}
-
-	}
-
-
-	nav{
-
-		ul{
+		/*z.chen logo on the top left*/
+		h1 {
+			left: 1.25em;
 			position: absolute;
-			right: 10px;
-			margin-left: 300px;
-			li{
-				display: inline-block;
-				/*padding: 0 5px;*/
-				a{
-					/*font-size: 20px;*/
-					text-decoration: none;
-					color: #FFFFFF;
+			a{
+				border:0;
+				display: block;
+				text-decoration: none;
+				color: #FFFFFF;
+				font-size: 20px;
+			}
 
-				}	
+		}
 
-				.nav-light {
-						transition: all 1s ease;
-						-moz-transition: all 1s ease; /* Firefox 4 */
-						-webkit-transition: all 1s ease; /* Safari and Chrome */
-						-o-transition: all 1s ease; /* Opera */
 
-					background-color: #124252;
-					border-radius: 5px;
+		nav{
+
+			ul{
+				position: absolute;
+				right: 10px;
+				margin-left: 300px;
+				li{
+					display: inline-block;
+					/*padding: 0 5px;*/
+					a{
+						/*font-size: 20px;*/
+						text-decoration: none;
+						color: #FFFFFF;
+
+					}	
+
+					.nav-light {
+						@include transition(all 1s ease);
+
+						background-color: #124252;
+						border-radius: 5px;
+					}
+
+					.nav-dark {
+						@include transition(background-color 1s ease);
+						background-color: transparent;
+					}
+
 				}
-
-				.nav-dark {
-					background-color: transparent;
-				}
-
 			}
 		}
 	}
-}
 
-body {
-	padding-top: 100px;
+
 	section {
-		margin-left: auto;
-		margin-right: auto;
-		width: 60%;
 		padding-top: 100px;
+		padding-bottom: 100px;
+		text-align: center;
+		h3 {
+			margin-left: auto;
+			margin-right: auto;
+			width: 60%;
+		}
 	}
 
+		#welcome {
+			height: 600px;
+			display: block;
+			@include bg("../media/fixed-background.jpg");
+		}
+		
+		#fixed-background {
+			height: 600px;
+			display: block;
+			@include bg("../media/fixed-background.jpg");
+		}
+
+	footer {
+		height: 150px;
+		background-color: rgba(1,6, 13, 0.9);
+		text-align: center;
+
+		#icons {
+			padding: 45px 0 30px 0;
+			.icon{
+				font-size: 30px;
+				.label{
+					display: none;
+				}
+			}
+			li {
+				display: inline-block;
+				padding-left: 20px;
+				padding-right: 20px;
+				a{
+					@include transition(all 0.5s ease);
+					text-decoration: none;
+					color: #595D63;
+					&:hover{
+					color: #FFFFFF;
+				}
+			}
+							
+			}
+		}
+
+		#copyright{
+			font-family: $custom-slab;
+			font-size: 20px;
+			font-weight: lighter;
+			line-height: 20px;
+			li{
+				display: inline-block;
+				padding-left: 5px;
+				color: #595D63;
+			}
+		}
+	}
+	
+
 }
 
 
-
-section {
-	height: 150px;
-}
