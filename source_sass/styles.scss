@@ -19,6 +19,7 @@
 	background-position: center center;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	z-index: 1;
 }
 
 $custom-slab: Garamond, sans-serif;
@@ -124,9 +125,13 @@ body {
 		}
 		
 		#fixed-background {
-			height: 600px;
-			display: block;
-			@include bg("../media/fixed-background.jpg");
+				height: 600px;
+				display: block;
+				@include bg("../media/Fixed-background-o.jpg");
+		}
+
+		#carousel {
+			background-color: rgba(100,100,100,0.5);
 		}
 
 	footer {
