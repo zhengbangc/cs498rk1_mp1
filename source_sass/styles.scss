@@ -7,6 +7,7 @@
 @import url(https://fonts.googleapis.com/css?family=Catamaran:400,300|Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Pacifico|Architects+Daughter|Dancing+Script);
 
+/*https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions*/
 
 @mixin transition($transition) {
 	transition: $transition;
@@ -25,10 +26,10 @@
 }
 
 @mixin bdr(){
-	border-left: solid 20px black;
-	border-right: solid 20px black;
-	border-top: solid 10px black;
-	border-bottom: solid 10px black;
+	border-left: solid 10px black;
+	border-right: solid 10px black;
+	border-top: solid 5px black;
+	border-bottom: solid 5px black;
 }
 
 $custom-slab: 'Catamaran', 'Lato', sans-serif;
@@ -54,11 +55,12 @@ body {
 			height: 60px;
 			line-height: 60px;
 			h1 a{
-				@include transition(font-size 0.35s ease);
+				@include transition(font-size  0.35s ease);
 				font-size: 35px;
 			}
 
 			nav a {
+				@include transition(padding  0.8s ease);
 				padding: 5px 10px 5px 10px;
 
 			}
@@ -72,6 +74,7 @@ body {
 				font-size: 22px;
 			}
 			nav a {
+				@include transition(padding  0.8s ease);
 				padding: 0 10px 0 10px;
 
 			}
@@ -108,17 +111,26 @@ body {
 					}	
 
 					.nav-light {
-						@include transition(background-color border-radius 1s ease);
-
-						background-color: rgba(144,154, 171, 0.5);
-						border-radius: 5px;
+						color: #FF0000;
 					}
 
 					.nav-dark {
+						color: #FFFFFF;
+						/*background-color: transparent;*/
+						/*border-radius: 5px;*/
+					}
+
+					.nav-here {
+						@include transition(background-color border-radius 1s ease);
+						background-color: rgba(144,154, 171, 0.7);
+						border-radius: 5px;
+					}
+					.nav-nothere {
 						@include transition(background-color 1s ease);
 						background-color: transparent;
 						border-radius: 5px;
 					}
+
 
 				}
 			}

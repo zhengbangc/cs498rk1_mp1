@@ -1,12 +1,38 @@
+//http://api.jquery.com/animate/
+//https://api.jquery.com/scrollTop/
+//https://api.jquery.com/click/
+//http://stackoverflow.com/questions/13016379/smooth-scroll-with-javascript-onclick
+//https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child
+//http://stackoverflow.com/questions/7717527/jquery-smooth-scrolling-when-clicking-an-anchor-link
+//http://api.jquery.com/offset/
 $(document).ready(function(){
 
     $(document).on("scroll",function(){
-    	if($(document).scrollTop()>100){
+    	//the first part is for the resizing of the navigation bar
+      if($(document).scrollTop()>150){
     		$("#header").removeClass("large").addClass("small");
     	}
     	else{
     		$("#header").removeClass("small").addClass("large");
     	}
+      //the later part is for the location indicator
+      //welcome 0px Collections 803 Inspiration 1480
+      // console.log($(document).scrollTop());
+      if($(document).scrollTop()<$('#carousel').offset().top){
+        $(".nav-element").removeClass("nav-here").addClass("nav-nothere");
+        $("#welcome-btn").removeClass("nav-nothere").addClass("nav-here");
+      }
+      if($(document).scrollTop()>=$('#carousel').offset().top && $(document).scrollTop() < $('#multi-column').offset().top){
+        $(".nav-element").removeClass("nav-here").addClass("nav-nothere");
+        $("#carousel-btn").removeClass("nav-nothere").addClass("nav-here");
+      }
+      if($(document).scrollTop()>=$('#multi-column').offset().top){
+        $(".nav-element").removeClass("nav-here").addClass("nav-nothere");
+        $("#multi-column-btn").removeClass("nav-nothere").addClass("nav-here");
+      }
+
+
+
 
     });
 
@@ -39,6 +65,17 @@ $(document).ready(function(){
       console.log(currentPicture);
       $("#slidesholder img:nth-child("+currentPicture+")").removeClass("inactive").addClass("active");  
     });
+
+//Below are for smooth scrolling
+var $root = $('html, body');
+  $("header nav a").click(function(){
+      $root.animate({
+         scrollTop: $( $.attr(this, 'href')).offset().top
+      },1000);
+      return false;
+  });
+
+
 
 
 });
