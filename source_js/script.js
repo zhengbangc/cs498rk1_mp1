@@ -26,9 +26,13 @@ $(document).ready(function(){
         $(".nav-element").removeClass("nav-here").addClass("nav-nothere");
         $("#carousel-btn").removeClass("nav-nothere").addClass("nav-here");
       }
-      if($(document).scrollTop()>=$('#multi-column').offset().top){
+      if($(document).scrollTop()>=$('#multi-column').offset().top && $(document).scrollTop() < $('#modal').offset().top){
         $(".nav-element").removeClass("nav-here").addClass("nav-nothere");
         $("#multi-column-btn").removeClass("nav-nothere").addClass("nav-here");
+      }
+      if($(document).scrollTop()>= $('#modal').offset().top){
+        $(".nav-element").removeClass("nav-here").addClass("nav-nothere");
+        $("#modal-btn").removeClass("nav-nothere").addClass("nav-here");
       }
 
 
@@ -67,15 +71,33 @@ $(document).ready(function(){
     });
 
 //Below are for smooth scrolling
-var $root = $('html, body');
+  var $root = $('html, body');
   $("header nav a").click(function(){
       $root.animate({
          scrollTop: $( $.attr(this, 'href')).offset().top
-      },1000);
+      },700);
       return false;
   });
 
 
+  //Below are for Modal
+  var $modalbox = $("<div id='modalbox'></div>")
+  var $img = $("<img>");
+
+  $modalbox.append($img);
+  $('#modal').append($modalbox);
+
+  $('#modal li').click(function (e){
+      e.preventDefault();
+      var src = $(this).children('img').attr("src");
+      // console.log(src);
+      $img.attr('src', src);
+
+      $modalbox.fadeIn(400);
+      $modalbox.click(function(){
+        $modalbox.fadeOut(400);
+      })
+  });
 
 
 });
